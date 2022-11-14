@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./components/navbar/Navbar";
 import Board from "./components/Board/Board";
 import Keypad from "./components/Keypad/Keypad";
+import FunctionButtons from "./components/FunctionButtons/FunctionButtons";
 import "./app.css"
 
 const App: React.FC = () => {
@@ -25,7 +26,8 @@ const App: React.FC = () => {
       <Navbar handleClick={newGame} />
       <div className="container">
         <Board gridValues={grid} />
-        <div>
+        <div className="buttons">
+          <FunctionButtons />
           <Keypad />
         </div>
         

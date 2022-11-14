@@ -7,6 +7,15 @@
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
+  gap: 20px;
+}
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  height: fit-content;
+  margin: auto;
+  /* outline: 1px solid red; */
 }
