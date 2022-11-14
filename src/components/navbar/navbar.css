@@ -10,12 +10,14 @@ nav {
 
 .nav-logo {
     font-size: 2rem;
+    font-weight: bold;
     user-select: none;
 }
 
 .nav-links {
     list-style: none;
     font-size: 2rem;
+    font-weight: bold;
     user-select: none;
     cursor: pointer;
 }
