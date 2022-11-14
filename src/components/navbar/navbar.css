@@ -1,0 +1,21 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    background-color: #ECECEC;
+    border-bottom: 1px solid #ABABAB;
+    height: 90px;
+    align-items: center;
+}
+
+#nav-logo {
+    font-size: 2rem;
+    user-select: none;
+}
+
+#nav-links {
+    list-style: none;
+    font-size: 2rem;
+    user-select: none;
+    cursor: pointer;
+}
