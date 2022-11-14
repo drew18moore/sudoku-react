@@ -8,12 +8,12 @@ nav {
     align-items: center;
 }
 
-#nav-logo {
+.nav-logo {
     font-size: 2rem;
     user-select: none;
 }
 
-#nav-links {
+.nav-links {
     list-style: none;
     font-size: 2rem;
     user-select: none;
