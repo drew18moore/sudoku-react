@@ -1,7 +1,12 @@
+.fn-btn-wrapper {
+  text-align: center;
+}
+
 .function-buttons {
   display: flex;
   justify-content: space-around;
 }
+
 .fn-btn  {
   display: flex;
   justify-content: center;

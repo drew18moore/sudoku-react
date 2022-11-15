@@ -14,7 +14,7 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 15px;
   height: fit-content;
   margin: auto;
   /* outline: 1px solid red; */
