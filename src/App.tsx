@@ -26,8 +26,15 @@ const App: React.FC = () => {
 
   const handleTileClick = (row: number, col: number, val: number) => {
     console.log(`${val} at row: ${row}, col: ${col}`);
-    setSelectedTile([row, col])
+    setSelectedTile((prev) => {
+      const sameAsPrev = JSON.stringify(prev) === JSON.stringify([row, col])
+      return sameAsPrev ? [] : [row, col]
+    })
   }
+
+  useEffect(() => {
+    console.log(selectedTile);
+  }, [selectedTile])
 
   return (
     <div className="App">
