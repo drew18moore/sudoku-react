@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import Navbar from "./components/navbar/Navbar";
 import Board from "./components/Board/Board";
 import Keypad from "./components/Keypad/Keypad";
@@ -17,15 +17,23 @@ const App: React.FC = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]]
   )
+
+  const [selectedTile, setSelectedTile] = useState<number[]>([])
+
   const newGame = () => {
     console.log(grid);
   };
+
+  const handleTileClick = (row: number, col: number, val: number) => {
+    console.log(`${val} at row: ${row}, col: ${col}`);
+    setSelectedTile([row, col])
+  }
 
   return (
     <div className="App">
       <Navbar handleClick={newGame} />
       <div className="container">
-        <Board gridValues={grid} />
+        <Board gridState={grid} handleClick={handleTileClick} />
         <div className="buttons">
           <FunctionButtons />
           <Keypad />

@@ -1,19 +1,19 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import "./board.css"
 
 interface BoardProps {
-  gridValues: number[][];
+  gridState: number[][];
+  handleClick: (row: number, col: number, val: number) => void
 }
 
 const Board: React.FC<BoardProps> = (props) => {
-  const board = props.gridValues.map((row, i) => {
+  const board = props.gridState.map((row, i) => {
     let horizontalBorder = i === 2 || i === 5 ? "bottom-border" : i === 3 || i === 6 ? "top-border" : ""
-    return row.map((val, i) => {
-      let verticalBorder = i === 2 || i === 5 ? "right-border" : i === 3 || i === 6 ? "left-border" : ""
-      return <div className={`tile ${verticalBorder} ${horizontalBorder}`}>{val === 0 ? "" : val}</div>
+    return row.map((val, j) => {
+      let verticalBorder = j === 2 || j === 5 ? "right-border" : j === 3 || j === 6 ? "left-border" : ""
+      return <div onClick={() => props.handleClick(i, j, val)} className={`tile ${verticalBorder} ${horizontalBorder}`}>{val === 0 ? "" : val}</div>
     })
   });
-  console.log(board);
 
   return <div className="grid">{board}</div>;
 };
