@@ -4,6 +4,7 @@ import Board from "./components/Board/Board";
 import Keypad from "./components/Keypad/Keypad";
 import FunctionButtons from "./components/FunctionButtons/FunctionButtons";
 import "./app.css"
+import axios from "axios";
 
 const App: React.FC = () => {
   const [grid, setGrid] = useState(
@@ -19,6 +20,14 @@ const App: React.FC = () => {
   )
 
   const [selectedTile, setSelectedTile] = useState<number[]>([])
+
+    useEffect(() => {
+      axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
+      .then(res => {
+        console.log(res.data.board)
+        setGrid(res.data.board)
+      }).catch(err => console.log(err))
+    }, [])
 
   const newGame = () => {
     console.log(grid);
