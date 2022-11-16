@@ -32,6 +32,17 @@ const App: React.FC = () => {
     })
   }
 
+  const handleKeypadClick = (val: number) => {
+    if (JSON.stringify(selectedTile) !== JSON.stringify([])) {
+      console.log(`${val} at ${selectedTile}`);
+      setGrid((prev) => {
+        const newGrid = [...prev]
+        newGrid[selectedTile[0]][selectedTile[1]] = val
+        return newGrid
+      })
+    }
+  }
+
   useEffect(() => {
     console.log(selectedTile);
   }, [selectedTile])
@@ -43,7 +54,7 @@ const App: React.FC = () => {
         <Board gridState={grid} handleClick={handleTileClick} />
         <div className="buttons">
           <FunctionButtons />
-          <Keypad />
+          <Keypad handleClick={handleKeypadClick} />
         </div>
         
       </div>
