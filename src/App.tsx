@@ -22,15 +22,15 @@ const App: React.FC = () => {
   const [selectedTile, setSelectedTile] = useState<number[]>([])
 
     useEffect(() => {
-      axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
+      newGame()
+    }, [])
+
+  const newGame = () => {
+    axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
       .then(res => {
         console.log(res.data.board)
         setGrid(res.data.board)
       }).catch(err => console.log(err))
-    }, [])
-
-  const newGame = () => {
-    console.log(grid);
   };
 
   const handleTileClick = (row: number, col: number, val: number) => {
