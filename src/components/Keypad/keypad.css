@@ -19,3 +19,11 @@
   cursor: pointer;
   user-select: none;
 }
+
+.key:hover {
+  background-color: #C8C8C8;
+}
+
+.key:active {
+  background-color: #ABABAB;
+}
