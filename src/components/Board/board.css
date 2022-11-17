@@ -32,3 +32,7 @@
 .bottom-border {
   border-bottom: 2px solid black;
 }
+
+.selected-tile {
+  background-color:deepskyblue;
+}

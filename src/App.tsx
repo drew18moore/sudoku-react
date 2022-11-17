@@ -60,7 +60,7 @@ const App: React.FC = () => {
     <div className="App">
       <Navbar handleClick={newGame} />
       <div className="container">
-        <Board gridState={grid} handleClick={handleTileClick} />
+        <Board gridState={grid} handleClick={handleTileClick} selectedTile={selectedTile}/>
         <div className="buttons">
           <FunctionButtons />
           <Keypad handleClick={handleKeypadClick} />
