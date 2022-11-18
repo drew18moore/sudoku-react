@@ -36,3 +36,7 @@
 .selected-tile {
   background-color:deepskyblue;
 }
+
+.user-input {
+  color: blue;
+}

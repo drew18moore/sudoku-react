@@ -20,6 +20,7 @@ const App: React.FC = () => {
   )
 
   const [selectedTile, setSelectedTile] = useState<number[]>([])
+  const [history, setHistory] = useState<number[][]>([])
 
     useEffect(() => {
       newGame()
@@ -42,25 +43,34 @@ const App: React.FC = () => {
   }
 
   const handleKeypadClick = (val: number) => {
-    if (JSON.stringify(selectedTile) !== JSON.stringify([])) {
+    const hasSelectedTile: boolean = JSON.stringify(selectedTile) !== JSON.stringify([])
+    if (hasSelectedTile) {
       console.log(`${val} at ${selectedTile}`);
       setGrid((prev) => {
         const newGrid = [...prev]
         newGrid[selectedTile[0]][selectedTile[1]] = val
         return newGrid
       })
+      setHistory((prev) => {
+        let updatedHistory = [...prev]
+        updatedHistory.push(selectedTile)
+        console.log("Updated history", updatedHistory)
+        console.log("HI");
+        return updatedHistory
+      })
     }
   }
 
   useEffect(() => {
     console.log(selectedTile);
-  }, [selectedTile])
+    console.log(history);
+  }, [selectedTile, history])
 
   return (
     <div className="App">
       <Navbar handleClick={newGame} />
       <div className="container">
-        <Board gridState={grid} handleClick={handleTileClick} selectedTile={selectedTile}/>
+        <Board gridState={grid} handleClick={handleTileClick} selectedTile={selectedTile} history={history}/>
         <div className="buttons">
           <FunctionButtons />
           <Keypad handleClick={handleKeypadClick} />
