@@ -29,13 +29,11 @@ const App: React.FC = () => {
   const newGame = () => {
     axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
       .then(res => {
-        console.log(res.data.board)
         setGrid(res.data.board)
       }).catch(err => console.log(err))
   };
 
   const handleTileClick = (row: number, col: number, val: number) => {
-    console.log(`${val} at row: ${row}, col: ${col}`);
     setSelectedTile((prev) => {
       const sameAsPrev = JSON.stringify(prev) === JSON.stringify([row, col])
       return sameAsPrev ? [] : [row, col]
@@ -45,7 +43,6 @@ const App: React.FC = () => {
   const handleKeypadClick = (val: number) => {
     const hasSelectedTile: boolean = JSON.stringify(selectedTile) !== JSON.stringify([])
     if (hasSelectedTile) {
-      console.log(`${val} at ${selectedTile}`);
       setGrid((prev) => {
         const newGrid = [...prev]
         newGrid[selectedTile[0]][selectedTile[1]] = val
@@ -54,17 +51,15 @@ const App: React.FC = () => {
       setHistory((prev) => {
         let updatedHistory = [...prev]
         updatedHistory.push(selectedTile)
-        console.log("Updated history", updatedHistory)
-        console.log("HI");
         return updatedHistory
       })
     }
   }
 
-  useEffect(() => {
-    console.log(selectedTile);
-    console.log(history);
-  }, [selectedTile, history])
+  // useEffect(() => {
+  //   console.log(selectedTile);
+  //   console.log(history);
+  // }, [selectedTile, history])
 
   return (
     <div className="App">
