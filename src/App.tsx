@@ -43,6 +43,32 @@ const App: React.FC = () => {
     }
   }
 
+  const handleFnBtnClick = (fn: string) => {
+    if (JSON.stringify(selectedTile) !== JSON.stringify([])) {
+      switch (fn) {
+        case "undo": {
+          console.log("undo");
+          break;
+        }
+        case "erase": {
+          setGrid((prev) => {
+            const newGrid = [...prev]
+            newGrid[selectedTile[0]][selectedTile[1]] = 0
+            return newGrid
+          })
+          break;
+        }
+        case "pencil": {
+          console.log("pencil");
+          break;
+        }
+        default: {
+          console.log("Function specified does not exist");
+        }
+      }
+    }
+  }
+
   // useEffect(() => {
   //   console.log(selectedTile);
   //   console.log(history);
@@ -54,7 +80,7 @@ const App: React.FC = () => {
       <div className="container">
         <Board gridState={grid} handleClick={handleTileClick} selectedTile={selectedTile} history={history}/>
         <div className="buttons">
-          <FunctionButtons />
+          <FunctionButtons handleClick={handleFnBtnClick}/>
           <Keypad handleClick={handleKeypadClick} />
         </div>
         
