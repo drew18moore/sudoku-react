@@ -7,7 +7,7 @@
   justify-content: space-around;
 }
 
-.fn-btn  {
+.fn-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,8 +19,16 @@
   background-color: #ECECEC;
 }
 
-.fn-btn  img {
+.fn-btn img {
   border-radius: 50%;
   width: 75%;
   height: 75%;
+}
+
+.fn-btn:hover {
+  background-color: #C8C8C8;
+}
+
+.fn-btn:active {
+  background-color: #ABABAB;
 }
