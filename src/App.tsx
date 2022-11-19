@@ -1,23 +1,10 @@
 import React, { MouseEventHandler, useEffect, useState } from "react";
-import Navbar from "./components/navbar/Navbar";
-import Board from "./components/Board/Board";
-import Keypad from "./components/Keypad/Keypad";
-import FunctionButtons from "./components/FunctionButtons/FunctionButtons";
+import {Navbar, Board, Keypad, FunctionButtons} from "./components"
 import "./app.css"
 import axios from "axios";
 
 const App: React.FC = () => {
-  const [grid, setGrid] = useState(
-    [[0, 9, 7, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 2, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-  )
+  const [grid, setGrid] = useState<number[][]>([])
 
   const [selectedTile, setSelectedTile] = useState<number[]>([])
   const [history, setHistory] = useState<number[][]>([])

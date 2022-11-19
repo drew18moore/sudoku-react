@@ -5,12 +5,12 @@ interface NavbarProps {
   handleClick(): void;
 }
 
-const Navbar: React.FC<NavbarProps> = (props) => {
+const Navbar: React.FC<NavbarProps> = ({ handleClick }) => {
   return (
     <nav>
       <div className="nav-logo">Sudoku</div>
       <ul className="nav-links">
-        <li onClick={props.handleClick}>New Game</li>
+        <li onClick={handleClick}>New Game</li>
       </ul>
     </nav>
   );
