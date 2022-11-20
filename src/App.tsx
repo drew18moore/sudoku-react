@@ -24,6 +24,7 @@ const App: React.FC = () => {
       .then(res => {
         setGrid(res.data.board)
       }).then(() => setHistory([]))
+      .then(() => setSelectedTile([]))
       .catch(err => console.log(err))
   };
 
