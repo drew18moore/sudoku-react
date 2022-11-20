@@ -1,7 +1,7 @@
 import React from "react"
 import "./keypad.css"
 
-interface KeypadProps {
+type KeypadProps = {
   handleClick: (val: number) => void
 }
 

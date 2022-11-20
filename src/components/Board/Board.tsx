@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from "react";
 import "./board.css"
 
-interface BoardProps {
+type BoardProps = {
   gridState: number[][],
   handleClick: (row: number, col: number, val: number) => void,
   selectedTile: number[],

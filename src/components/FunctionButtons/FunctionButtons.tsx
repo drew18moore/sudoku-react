@@ -1,7 +1,7 @@
 import React from "react"
 import "./functionButtons.css"
 
-interface FnBtnProps {
+type FnBtnProps = {
   handleClick: (fn: string) => void
 }
 
