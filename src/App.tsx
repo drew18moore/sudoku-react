@@ -23,7 +23,8 @@ const App: React.FC = () => {
     axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
       .then(res => {
         setGrid(res.data.board)
-      }).catch(err => console.log(err))
+      }).then(() => setHistory([]))
+      .catch(err => console.log(err))
   };
 
   const handleTileClick = (row: number, col: number, val: number) => {
