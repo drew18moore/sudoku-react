@@ -49,27 +49,27 @@ const App: React.FC = () => {
   }
 
   const handleFnBtnClick = (fn: string) => {
-    if (JSON.stringify(selectedTile) !== JSON.stringify([])) {
-      switch (fn) {
-        case "undo": {
-          console.log("undo");
-          break;
-        }
-        case "erase": {
+    switch (fn) {
+      case "undo": {
+        alert("Undo is not implemented")
+        break;
+      }
+      case "erase": {
+        if (JSON.stringify(selectedTile) !== JSON.stringify([])) {
           setGrid((prev) => {
             const newGrid = [...prev]
             newGrid[selectedTile[0]][selectedTile[1]] = 0
             return newGrid
           })
-          break;
         }
-        case "pencil": {
-          console.log("pencil");
-          break;
-        }
-        default: {
-          console.log("Function specified does not exist");
-        }
+        break;
+      }
+      case "pencil": {
+        alert("Pencil tool is not implemented");
+        break;
+      }
+      default: {
+        console.log("Function specified does not exist");
       }
     }
   }
