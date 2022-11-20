@@ -1,11 +1,12 @@
 import React, { MouseEventHandler } from "react";
+import { History } from "../../App";
 import "./board.css"
 
 type BoardProps = {
   gridState: number[][],
   handleClick: (row: number, col: number, val: number) => void,
   selectedTile: number[],
-  history: number[][]
+  history: History[]
 }
 
 const Board: React.FC<BoardProps> = ({ gridState, handleClick, selectedTile, history }) => {
@@ -14,7 +15,7 @@ const Board: React.FC<BoardProps> = ({ gridState, handleClick, selectedTile, his
     return row.map((val, j) => {
       let verticalBorder = j === 2 || j === 5 ? "right-border" : j === 3 || j === 6 ? "left-border" : ""
       let selected = i === selectedTile[0] && j === selectedTile[1] ? "selected-tile" : ""
-      let userInput = val === 0 || JSON.stringify(history).includes(JSON.stringify([i, j])) ? "user-input" : ""
+      let userInput = val === 0 || history.find(e => e.row === i && e.col === j) ? "user-input" : ""
 
       return <div onClick={userInput ? () => handleClick(i, j, val) : undefined} className={`tile ${verticalBorder} ${horizontalBorder} ${selected} ${userInput}`} id={`${i}-${j}`} key={`${i}-${j}`}>{val === 0 ? "" : val}</div>
     })

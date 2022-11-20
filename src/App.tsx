@@ -3,11 +3,17 @@ import {Navbar, Board, Keypad, FunctionButtons} from "./components"
 import "./app.css"
 import axios from "axios";
 
+export type History = {
+  prev: Number,
+  row: Number,
+  col: Number
+}
+
 const App: React.FC = () => {
   const [grid, setGrid] = useState<number[][]>([])
 
   const [selectedTile, setSelectedTile] = useState<number[]>([])
-  const [history, setHistory] = useState<number[][]>([])
+  const [history, setHistory] = useState<History[]>([])
 
     useEffect(() => {
       newGame()
@@ -27,18 +33,17 @@ const App: React.FC = () => {
     })
   }
 
-  const handleKeypadClick = (val: number) => {
+  const handleKeypadClick = async (val: number) => {
     const hasSelectedTile: boolean = JSON.stringify(selectedTile) !== JSON.stringify([])
     if (hasSelectedTile) {
-      setGrid((prev) => {
-        const newGrid = [...prev]
+      await setHistory((prevHistory) => [
+        ...prevHistory,
+        {prev: grid[selectedTile[0]][selectedTile[1]], row: selectedTile[0], col: selectedTile[1]}
+      ])
+      await setGrid((prevGrid) => {
+        const newGrid = [...prevGrid]
         newGrid[selectedTile[0]][selectedTile[1]] = val
         return newGrid
-      })
-      setHistory((prev) => {
-        let updatedHistory = [...prev]
-        updatedHistory.push(selectedTile)
-        return updatedHistory
       })
     }
   }
@@ -69,10 +74,10 @@ const App: React.FC = () => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log(selectedTile);
-  //   console.log(history);
-  // }, [selectedTile, history])
+  useEffect(() => {
+    console.log(selectedTile);
+    console.log(history);
+  }, [selectedTile, history])
 
   return (
     <div className="App">
