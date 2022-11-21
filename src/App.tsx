@@ -11,7 +11,7 @@ export type History = {
 
 const App: React.FC = () => {
   const [grid, setGrid] = useState<number[][]>([])
-  const [solvedGrid, setSolvedGrid] = useState<number[]>([])
+  const [solvedGrid, setSolvedGrid] = useState<number[][]>([])
 
   const [selectedTile, setSelectedTile] = useState<number[]>([])
   const [history, setHistory] = useState<History[]>([])
@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
   const handleKeypadClick = async (val: number) => {
     const hasSelectedTile: boolean = JSON.stringify(selectedTile) !== JSON.stringify([])
-    if (hasSelectedTile) {
+    if (hasSelectedTile && solvedGrid[selectedTile[0]][selectedTile[1]] === val) {
       await setHistory((prevHistory) => [
         ...prevHistory,
         {prev: grid[selectedTile[0]][selectedTile[1]], row: selectedTile[0], col: selectedTile[1]}
@@ -54,6 +54,9 @@ const App: React.FC = () => {
         newGrid[selectedTile[0]][selectedTile[1]] = val
         return newGrid
       })
+      if (JSON.stringify(grid) === JSON.stringify(solvedGrid)) {
+        alert("You Win")
+      }
     }
   }
 
@@ -84,10 +87,10 @@ const App: React.FC = () => {
   }
 
   // useEffect(() => {
-  //   console.log(selectedTile);
+  //   console.log(grid);
   //   // console.log(history);
   //   console.log(solvedGrid);
-  // }, [selectedTile, solvedGrid])
+  // }, [grid, solvedGrid])
 
   return (
     <div className="App">
