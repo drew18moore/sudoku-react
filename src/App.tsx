@@ -11,6 +11,7 @@ export type History = {
 
 const App: React.FC = () => {
   const [grid, setGrid] = useState<number[][]>([])
+  const [solvedGrid, setSolvedGrid] = useState<number[]>([])
 
   const [selectedTile, setSelectedTile] = useState<number[]>([])
   const [history, setHistory] = useState<History[]>([])
@@ -22,6 +23,12 @@ const App: React.FC = () => {
   const newGame = () => {
     axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
       .then(res => {
+        const params = new URLSearchParams();
+        params.append("board", JSON.stringify(res.data.board));
+        axios.post("https://sugoku.herokuapp.com/solve", params)
+        .then(resSol => {
+          setSolvedGrid(resSol.data.solution);
+        })
         setGrid(res.data.board)
       }).then(() => setHistory([]))
       .then(() => setSelectedTile([]))
@@ -76,10 +83,11 @@ const App: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    console.log(selectedTile);
-    console.log(history);
-  }, [selectedTile, history])
+  // useEffect(() => {
+  //   console.log(selectedTile);
+  //   // console.log(history);
+  //   console.log(solvedGrid);
+  // }, [selectedTile, solvedGrid])
 
   return (
     <div className="App">
