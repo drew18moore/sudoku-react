@@ -20,10 +20,10 @@ const Board: React.FC<BoardProps> = ({ gridState, solvedGrid, handleClick, selec
       let isUserInput = val === 0 || history.find(e => e.row === i && e.col === j)
       // If a user inputs an incorrect value, the tile will have a red font color. Otherwise the color is blue
       let userInputStyling = isUserInput ? val !== 0 ? solvedGrid[i][j] === val ? "correct" : "incorrect" : "" : "default-tiles"
-      
+      let highlightedTile = selectedTile !== undefined && selectedTile[1] !== undefined && gridState[selectedTile[0]][selectedTile[1]] !== 0 && selectedTile[0] !== i && selectedTile[1] !== j && val === gridState[selectedTile[0]][selectedTile[1]] ? "highlighted" : ""
       return <div 
         onClick={isUserInput ? () => handleClick(i, j, val) : undefined} 
-        className={`tile ${verticalBorder} ${horizontalBorder} ${selectedTileStyling} ${userInputStyling}`} 
+        className={`tile ${verticalBorder} ${horizontalBorder} ${selectedTileStyling} ${userInputStyling} ${highlightedTile}`} 
         id={`${i}-${j}`} 
         key={`${i}-${j}`}>
           {val === 0 ? "" : val}

@@ -48,3 +48,7 @@
 .incorrect {
   color: red;
 }
+
+.highlighted {
+  background-color:lightskyblue;
+}
