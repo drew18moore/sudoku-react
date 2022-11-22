@@ -20,4 +20,10 @@ nav {
     font-weight: bold;
     user-select: none;
     cursor: pointer;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.nav-links:hover {
+    background-color: #C8C8C8;
 }
