@@ -33,6 +33,10 @@
   border-bottom: 2px solid black;
 }
 
+.default-tiles { 
+  background-color: #E6E6E6;
+}
+
 .selected-tile {
   background-color:deepskyblue;
 }

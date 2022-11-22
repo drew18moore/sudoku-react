@@ -19,7 +19,7 @@ const Board: React.FC<BoardProps> = ({ gridState, solvedGrid, handleClick, selec
       let selectedTileStyling = i === selectedTile[0] && j === selectedTile[1] ? "selected-tile" : ""
       let isUserInput = val === 0 || history.find(e => e.row === i && e.col === j)
       // If a user inputs an incorrect value, the tile will have a red font color. Otherwise the color is blue
-      let userInputStyling = isUserInput ? val !== 0 ? solvedGrid[i][j] === val ? "correct" : "incorrect" : "" : ""
+      let userInputStyling = isUserInput ? val !== 0 ? solvedGrid[i][j] === val ? "correct" : "incorrect" : "" : "default-tiles"
       
       return <div 
         onClick={isUserInput ? () => handleClick(i, j, val) : undefined} 
