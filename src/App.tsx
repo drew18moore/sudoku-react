@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
   const handleKeypadClick = async (val: number) => {
     const hasSelectedTile: boolean = JSON.stringify(selectedTile) !== JSON.stringify([])
-    if (hasSelectedTile && solvedGrid[selectedTile[0]][selectedTile[1]] === val) {
+    if (hasSelectedTile) {
       await setHistory((prevHistory) => [
         ...prevHistory,
         {prev: grid[selectedTile[0]][selectedTile[1]], row: selectedTile[0], col: selectedTile[1]}
@@ -96,7 +96,7 @@ const App: React.FC = () => {
     <div className="App">
       <Navbar handleClick={newGame} />
       <div className="container">
-        <Board gridState={grid} handleClick={handleTileClick} selectedTile={selectedTile} history={history}/>
+        <Board gridState={grid} solvedGrid={solvedGrid} handleClick={handleTileClick} selectedTile={selectedTile} history={history}/>
         <div className="buttons">
           <FunctionButtons handleClick={handleFnBtnClick}/>
           <Keypad handleClick={handleKeypadClick} />

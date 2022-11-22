@@ -37,6 +37,10 @@
   background-color:deepskyblue;
 }
 
-.user-input {
+.correct {
   color: blue;
+}
+
+.incorrect {
+  color: red;
 }
