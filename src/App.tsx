@@ -100,15 +100,15 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Navbar handleClick={newGame} />
-      <div className="container">
-        <Board gridState={grid} solvedGrid={solvedGrid} handleClick={handleTileClick} selectedTile={selectedTile} history={history}/>
-        <div className="buttons">
-          <FunctionButtons handleClick={handleFnBtnClick}/>
-          <Keypad handleClick={handleKeypadClick} />
+      <div className="aligner">
+        <div className="container">
+          <Board gridState={grid} solvedGrid={solvedGrid} handleClick={handleTileClick} selectedTile={selectedTile} history={history}/>
+          <div className="buttons">
+            <FunctionButtons handleClick={handleFnBtnClick}/>
+            <Keypad handleClick={handleKeypadClick} />
+          </div>
         </div>
-        
       </div>
-      
     </div>
   );
 };

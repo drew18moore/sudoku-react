@@ -1,13 +1,13 @@
+.aligner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 .container {
   display: flex;
   width: fit-content;
   margin: 0 auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  /* outline: 1px solid red; */
   gap: 20px;
 }
 
@@ -17,5 +17,38 @@
   gap: 15px;
   height: fit-content;
   margin: auto;
-  /* outline: 1px solid red; */
+}
+
+@media (max-width: 770px) {
+  .container {
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .nav-logo, .nav-links {
+    font-size: 1rem;
+  }
+
+  .grid {
+    width: 100vw;
+    height: 100vw;
+    margin-top: 10px;
+  }
+
+  .keypad {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    width: 100vw;
+    gap: 5px;
+    height: auto;
+  }
+
+  .key {
+    height: 50px;
+  }
+
+  .fn-btn {
+    width: 50px;
+    height: 50px;
+  }
 }
