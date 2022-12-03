@@ -45,9 +45,22 @@ const App: React.FC = () => {
         'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
       }
     }).then((res) => {
-      // setGrid(res.data.puzzle)
+      axios.get(`${import.meta.env.VITE_BASE_URL}/solve`, {
+        headers: {
+          'X-RapidAPI-Key': `${import.meta.env.VITE_API_KEY}`,
+          'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
+        },
+        params: {
+          "puzzle": `${res.data.puzzle}`
+        }
+      }).then((resSol) => {
+        let solution = [...resSol.data.solution].map((val) => parseInt(val))
+        let newSolution = []
+        while (solution.length) newSolution.push(solution.splice(0,9))
+        setSolvedGrid(newSolution)
+        console.log(newSolution)
+      })
       let puzzle = [...res.data.puzzle].map((val) => val === "." ? 0 : parseInt(val))
-      console.log(puzzle)
       let newPuzzle = []
       while (puzzle.length) newPuzzle.push(puzzle.splice(0,9))
       console.log(newPuzzle);
