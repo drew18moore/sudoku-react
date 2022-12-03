@@ -17,13 +17,20 @@ npm install npm@latest -g
 ```
 
 ### Installation
-1. Clone the repo
+1. Get free API key from [https://rapidapi.com/gregor-i/api/sudoku-generator1](https://rapidapi.com/gregor-i/api/sudoku-generator1)
+2. Clone the repo
 ```
 git clone https://github.com/drew18moore/sudoku-react.git
 ```
-2. Install npm packages
+3. Install npm packages
 ```
 npm install
+```
+4. Create a file named <i>.env</i> in the root of the application
+5. Inside of the <i>.env</i> file, paste the following:
+```
+VITE_BASE_URL=https://sudoku-generator1.p.rapidapi.com/sudoku
+VITE_API_KEY=<YOUR_API_KEY_GOES_HERE>
 ```
 
 ### Run

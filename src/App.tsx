@@ -27,18 +27,6 @@ const App: React.FC = () => {
     }, [])
 
   const newGame = () => {
-    // axios.get(`${import.meta.env.VITE_BASE_URL}/board?difficulty=easy`, {headers: {}})
-    //   .then(res => {
-    //     const params = new URLSearchParams();
-    //     params.append("board", JSON.stringify(res.data.board));
-    //     axios.post(`${import.meta.env.VITE_BASE_URL}/solve`, params)
-    //     .then(resSol => {
-    //       setSolvedGrid(resSol.data.solution);
-    //     })
-    //     setGrid(res.data.board)
-    //   }).then(() => setHistory([]))
-    //   .then(() => setSelectedTile({row: -1, col: -1, isMutable: false}))
-    //   .catch(err => console.log(err))
     axios.get(`${import.meta.env.VITE_BASE_URL}/generate`, {
       headers: {
         'X-RapidAPI-Key': `${import.meta.env.VITE_API_KEY}`,
