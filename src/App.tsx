@@ -27,18 +27,32 @@ const App: React.FC = () => {
     }, [])
 
   const newGame = () => {
-    axios.get("https://sugoku.herokuapp.com/board?difficulty=easy")
-      .then(res => {
-        const params = new URLSearchParams();
-        params.append("board", JSON.stringify(res.data.board));
-        axios.post("https://sugoku.herokuapp.com/solve", params)
-        .then(resSol => {
-          setSolvedGrid(resSol.data.solution);
-        })
-        setGrid(res.data.board)
-      }).then(() => setHistory([]))
-      .then(() => setSelectedTile({row: -1, col: -1, isMutable: false}))
-      .catch(err => console.log(err))
+    // axios.get(`${import.meta.env.VITE_BASE_URL}/board?difficulty=easy`, {headers: {}})
+    //   .then(res => {
+    //     const params = new URLSearchParams();
+    //     params.append("board", JSON.stringify(res.data.board));
+    //     axios.post(`${import.meta.env.VITE_BASE_URL}/solve`, params)
+    //     .then(resSol => {
+    //       setSolvedGrid(resSol.data.solution);
+    //     })
+    //     setGrid(res.data.board)
+    //   }).then(() => setHistory([]))
+    //   .then(() => setSelectedTile({row: -1, col: -1, isMutable: false}))
+    //   .catch(err => console.log(err))
+    axios.get(`${import.meta.env.VITE_BASE_URL}/generate`, {
+      headers: {
+        'X-RapidAPI-Key': `${import.meta.env.VITE_API_KEY}`,
+        'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
+      }
+    }).then((res) => {
+      // setGrid(res.data.puzzle)
+      let puzzle = [...res.data.puzzle].map((val) => val === "." ? 0 : parseInt(val))
+      console.log(puzzle)
+      let newPuzzle = []
+      while (puzzle.length) newPuzzle.push(puzzle.splice(0,9))
+      console.log(newPuzzle);
+      setGrid(newPuzzle)
+    })
   };
 
   const handleTileClick = (row: number, col: number, val: number, isUserInput: boolean) => {
