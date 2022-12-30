@@ -33,12 +33,14 @@ VITE_BASE_URL=https://sudoku-generator1.p.rapidapi.com/sudoku
 VITE_API_KEY=<YOUR_API_KEY_GOES_HERE>
 ```
 
-### Run
+## Usage
+* If you don't want to go through the trouble of registering an API key, comment out 'newGame()' in the useEffect() in `App.tsx`
+
+* To run the application, run the following command:
 ```
 npm run dev
 ```
 
 ## Roadmap
-- [ ] Add medium and hard difficulties
 - [ ] Implement Undo tool
 - [ ] Implement Pencil tool

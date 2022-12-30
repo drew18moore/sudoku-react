@@ -47,7 +47,7 @@ const App: React.FC = () => {
   const [history, setHistory] = useState<History[]>([]);
 
   useEffect(() => {
-    // newGame()
+    newGame()
   }, []);
 
   const newGame = () => {
