@@ -4,9 +4,9 @@ import "./app.css";
 import axios from "axios";
 
 export type History = {
-  prev: Number;
-  row: Number;
-  col: Number;
+  prev: number;
+  row: number;
+  col: number;
 };
 
 export type SelectedTile = {
@@ -25,7 +25,7 @@ const App: React.FC = () => {
     [0, 2, 7, 0, 0, 1, 0, 5, 3],
     [0, 0, 2, 9, 0, 0, 0, 3, 0],
     [5, 4, 6, 0, 0, 3, 9, 0, 8],
-    [9, 0, 3, 0, 2, 6, 0, 4, 7]
+    [9, 0, 3, 0, 2, 6, 0, 4, 7],
   ]);
   const [solvedGrid, setSolvedGrid] = useState<number[][]>([
     [4, 5, 8, 2, 3, 9, 1, 7, 6],
@@ -36,7 +36,7 @@ const App: React.FC = () => {
     [6, 2, 7, 4, 9, 1, 8, 5, 3],
     [7, 8, 2, 9, 4, 5, 6, 3, 1],
     [5, 4, 6, 1, 7, 3, 9, 2, 8],
-    [9, 1, 3, 8, 2, 6, 5, 4, 7]
+    [9, 1, 3, 8, 2, 6, 5, 4, 7],
   ]);
 
   const [selectedTile, setSelectedTile] = useState<SelectedTile>({
@@ -47,8 +47,12 @@ const App: React.FC = () => {
   const [history, setHistory] = useState<History[]>([]);
 
   useEffect(() => {
-    newGame()
+    // newGame()
   }, []);
+
+  useEffect(() => {
+    console.log("HISTORY", history);
+  }, [history]);
 
   const newGame = () => {
     axios
@@ -128,24 +132,49 @@ const App: React.FC = () => {
 
   const handleFnBtnClick = (fn: string) => {
     switch (fn) {
+      // Undo btn
       case "undo": {
-        alert("Undo is not implemented");
+        const updatedHistory = [...history];
+        const lastHistory = updatedHistory.pop();
+
+        if (!lastHistory) break;
+
+        let updatedGrid = grid.map(arr => arr.slice());
+        updatedGrid[lastHistory.row][lastHistory.col] = lastHistory.prev;
+
+        setGrid(updatedGrid);
+        setHistory(updatedHistory);
         break;
       }
+      // Erase btn
       case "erase": {
         if (
           selectedTile.row !== -1 &&
           selectedTile.col !== -1 &&
           selectedTile.isMutable
         ) {
-          setGrid((prev) => {
+          eraseTile();
+        }
+
+        async function eraseTile() {
+          await setHistory((prevHistory) => [
+            ...prevHistory,
+            {
+              prev: grid[selectedTile.row][selectedTile.col],
+              row: selectedTile.row,
+              col: selectedTile.col,
+            },
+          ]);
+          await setGrid((prev) => {
             const newGrid = [...prev];
             newGrid[selectedTile.row][selectedTile.col] = 0;
             return newGrid;
           });
         }
+        
         break;
       }
+      // Pencil btn
       case "pencil": {
         alert("Pencil tool is not implemented");
         break;
