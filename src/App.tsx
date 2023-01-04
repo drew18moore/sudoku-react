@@ -148,13 +148,10 @@ const App: React.FC = () => {
       }
       // Erase btn
       case "erase": {
-        if (
-          selectedTile.row !== -1 &&
-          selectedTile.col !== -1 &&
-          selectedTile.isMutable
-        ) {
-          eraseTile();
-        }
+        if (selectedTile.row == -1 || selectedTile.col == -1 || !selectedTile.isMutable) break;
+        if (grid[selectedTile.row][selectedTile.col] == 0) break;
+        
+        eraseTile();
 
         async function eraseTile() {
           await setHistory((prevHistory) => [
@@ -171,7 +168,7 @@ const App: React.FC = () => {
             return newGrid;
           });
         }
-        
+
         break;
       }
       // Pencil btn

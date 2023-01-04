@@ -42,5 +42,5 @@ npm run dev
 ```
 
 ## Roadmap
-- [ ] Implement Undo tool
+- [X] Implement Undo tool
 - [ ] Implement Pencil tool
