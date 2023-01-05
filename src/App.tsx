@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useEffect, useState } from "react";
-import { Navbar, Board, Keypad, FunctionButtons } from "./components";
+import { Navbar, Board, Keypad, FunctionButtons, Modal } from "./components";
 import "./app.css";
 import axios from "axios";
 
@@ -45,7 +45,7 @@ const App: React.FC = () => {
     isMutable: false,
   });
   const [history, setHistory] = useState<History[]>([]);
-
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     // newGame()
   }, []);
@@ -89,6 +89,9 @@ const App: React.FC = () => {
         while (puzzle.length) newPuzzle.push(puzzle.splice(0, 9));
         console.log(newPuzzle);
         setGrid(newPuzzle);
+      })
+      .catch(() => {
+        setShowModal(true);
       });
   };
 
@@ -139,7 +142,7 @@ const App: React.FC = () => {
 
         if (!lastHistory) break;
 
-        let updatedGrid = grid.map(arr => arr.slice());
+        let updatedGrid = grid.map((arr) => arr.slice());
         updatedGrid[lastHistory.row][lastHistory.col] = lastHistory.prev;
 
         setGrid(updatedGrid);
@@ -148,9 +151,14 @@ const App: React.FC = () => {
       }
       // Erase btn
       case "erase": {
-        if (selectedTile.row == -1 || selectedTile.col == -1 || !selectedTile.isMutable) break;
+        if (
+          selectedTile.row == -1 ||
+          selectedTile.col == -1 ||
+          !selectedTile.isMutable
+        )
+          break;
         if (grid[selectedTile.row][selectedTile.col] == 0) break;
-        
+
         eraseTile();
 
         async function eraseTile() {
@@ -204,6 +212,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+      {showModal && <Modal setShowModal={setShowModal}></Modal>}
     </div>
   );
 };
