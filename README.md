@@ -34,7 +34,7 @@ VITE_API_KEY=<YOUR_API_KEY_GOES_HERE>
 ```
 
 ## Usage
-* If you don't want to go through the trouble of registering an API key, comment out 'newGame()' in the useEffect() in `App.tsx`
+* If you don't want to go through the trouble of registering an API key, the game comes with one free puzzle.
 
 * To run the application, run the following command:
 ```

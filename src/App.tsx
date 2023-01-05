@@ -47,12 +47,8 @@ const App: React.FC = () => {
   const [history, setHistory] = useState<History[]>([]);
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
-    // newGame()
+    newGame()
   }, []);
-
-  useEffect(() => {
-    console.log("HISTORY", history);
-  }, [history]);
 
   const newGame = () => {
     axios
@@ -80,14 +76,12 @@ const App: React.FC = () => {
             let newSolution = [];
             while (solution.length) newSolution.push(solution.splice(0, 9));
             setSolvedGrid(newSolution);
-            console.log(newSolution);
           });
         let puzzle = [...res.data.puzzle].map((val) =>
           val === "." ? 0 : parseInt(val)
         );
         let newPuzzle = [];
         while (puzzle.length) newPuzzle.push(puzzle.splice(0, 9));
-        console.log(newPuzzle);
         setGrid(newPuzzle);
       })
       .catch(() => {
@@ -102,7 +96,6 @@ const App: React.FC = () => {
     isUserInput: boolean
   ) => {
     setSelectedTile((prev) => {
-      //const sameAsPrev = JSON.stringify(prev) === JSON.stringify([row, col])
       const sameAsPrev = prev.row === row && prev.col === col;
       return sameAsPrev
         ? { row: -1, col: -1, isMutable: false }
@@ -190,10 +183,6 @@ const App: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(selectedTile);
-  }, [selectedTile]);
-
   return (
     <div className="App">
       <Navbar handleClick={newGame} />
@@ -212,7 +201,33 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
-      {showModal && <Modal setShowModal={setShowModal}></Modal>}
+      {showModal && (
+        <Modal heading="Invalid API Key" setShowModal={setShowModal}>
+          <p>
+            To generate a new sudoku grid, you must have your own valid API key.
+          </p>
+          <ol>
+            <li>
+              Go to{" "}
+              <a
+                href="https://rapidapi.com/gregor-i/api/sudoku-generator1"
+                target="_blank"
+              >
+                https://rapidapi.com/gregor-i/api/sudoku-generator1
+              </a>{" "}
+              to register an API key.
+            </li>
+            <li>Create a .env file in the root directory</li>
+            <li>Inside of the .env file, place the following two lines: </li>
+            <ol>
+              <li>
+                VITE_BASE_URL=https://sudoku-generator1.p.rapidapi.com/sudoku
+              </li>
+              <li>VITE_API_KEY=&lt;YOUR_API_KEY_GOES_HERE&gt;</li>
+            </ol>
+          </ol>
+        </Modal>
+      )}
     </div>
   );
 };

@@ -2,11 +2,12 @@ import React from "react";
 import "./modal.css";
 
 type ModalProps = {
+  heading?: string,
   children?: React.ReactNode;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Modal: React.FC<ModalProps> = ({ children, setShowModal }) => {
+const Modal: React.FC<ModalProps> = ({ heading, children, setShowModal }) => {
   return (
     <div
       className="modal-backdrop"
@@ -16,9 +17,12 @@ const Modal: React.FC<ModalProps> = ({ children, setShowModal }) => {
       }}
     >
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        <button className="close-modal-btn" onClick={() => {setShowModal(false)}}>
-          <span className="material-symbols-rounded">close</span>
-        </button>
+        <div className="modal-header">
+          <p className="modal-heading">{heading}</p>
+          <button className="close-modal-btn" onClick={() => {setShowModal(false)}}>
+            <span className="material-symbols-rounded">close</span>
+          </button>
+        </div>
         <hr />
         {children}
       </div>
