@@ -20,15 +20,21 @@ nav {
 }
 
 .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     list-style: none;
     font-size: 2rem;
     font-weight: bold;
     user-select: none;
+}
+
+.nav-links li {
     cursor: pointer;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 8px;
 }
 
-.nav-links:hover {
+.nav-links li:hover {
     background-color: #C8C8C8;
 }
